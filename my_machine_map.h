@@ -1,4 +1,4 @@
--/*
+/*
   my_machine_map.h - driver code for RP2040 ARM processors
   JAF Graphics - 3 axis test board
   Part of grblHAL
@@ -24,7 +24,7 @@
 #error Trinamic plugin not supported!
 #endif
 
-#if N_ABC_MOTORS > 1
+#if N_ABC_MOTORS > 0
 #error "Axis configuration is not supported!"
 #endif
 
