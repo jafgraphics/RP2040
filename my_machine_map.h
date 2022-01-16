@@ -29,7 +29,6 @@
 #endif
 
 // Define step pulse output pins.
-#define STEP_PORT                   GPIO_PIO  // N_AXIS pin PIO SM
 #define STEP_PINS_BASE 6 // N_AXIS number of consecutive pins are used by PIO
 
 // Define step direction output pins.
@@ -39,8 +38,8 @@
 #define Z_DIRECTION_PIN         12
 #define DIRECTION_OUTMODE       GPIO_MAP
 
-// Define stepper driver enable/disable output pin
-#define ENABLE_PORT    GPIO_OUTPUT
+// Define stepper driver enable/disable output pin.
+#define STEPPERS_ENABLE_PORT    GPIO_OUTPUT
 #define STEPPERS_ENABLE_PIN     14
 #define STEPPERS_ENABLE_MASK    STEPPERS_ENABLE_BIT
 
@@ -52,16 +51,15 @@
 #define LIMIT_INMODE            GPIO_MAP
 
 // Define ganged axis or A axis step pulse and step direction output pins.
-#if N_ABC_MOTORS > 0       
-#define M3_AVAILABLE  
-#define M3_STEP_PIN             5
+#if N_ABC_MOTORS > 0
+#define M3_AVAILABLE
+#define M3_STEP_PIN             3
 #define M3_DIRECTION_PIN        (Z_DIRECTION_PIN + 1)
 #define M3_LIMIT_PIN            (Z_LIMIT_PIN + 1)
 #endif
 
-
 // Define spindle enable and spindle direction output pins.
-#define SPINDLE_PORT     GPIO_OUTPUT
+#define SPINDLE_ENABLE_PORT     GPIO_OUTPUT
 #define SPINDLE_ENABLE_PIN      16
 #define SPINDLE_DIRECTION_PORT  GPIO_OUTPUT
 #define SPINDLE_DIRECTION_PIN   17
@@ -72,7 +70,7 @@
 #define SPINDLE_PWM_BIT         (1<<SPINDLE_PWM_PIN)
 
 // Define flood and mist coolant enable output pins.
-#define COOLANT_PORT      GPIO_OUTPUT
+#define COOLANT_FLOOD_PORT      GPIO_OUTPUT
 #define COOLANT_FLOOD_PIN       26
 #define COOLANT_MIST_PORT       GPIO_OUTPUT
 #define COOLANT_MIST_PIN        27
@@ -88,10 +86,7 @@
 #define CONTROL_INMODE          GPIO_MAP
 
 // Define probe switch input pin.
-#define PROBE_PORT              GPIO_INPUT
 #define PROBE_PIN               0
-#define PROBE_BIT             (1<<PROBE_PIN)
-
 
 #if KEYPAD_ENABLE
 #define KEYPAD_STROBE_PIN       1
