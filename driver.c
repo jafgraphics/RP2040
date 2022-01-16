@@ -1003,7 +1003,7 @@ static void limitsEnable(bool on, bool homing)
 {
     uint32_t i = limit_inputs.n_pins;
 
-    on = on && !homing;
+    on = on && settings.limits.flags.hard_enabled;
 
     do {
         i--;
