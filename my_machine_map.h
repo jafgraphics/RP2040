@@ -42,6 +42,7 @@
 #define STEPPERS_ENABLE_PORT    GPIO_OUTPUT
 #define STEPPERS_ENABLE_PIN     14
 #define STEPPERS_ENABLE_MASK    STEPPERS_ENABLE_BIT
+#define STEPPERS_ENABLE_OUTMODE     GPIO_MAP
 
 // Define homing/hard limit switch input pins.
 #define LIMIT_PORT              GPIO_IN
