@@ -87,7 +87,9 @@
 #define CONTROL_INMODE          GPIO_MAP
 
 // Define probe switch input pin.
+#define PROBE_PORT              GPIO_INPUT
 #define PROBE_PIN               0
+#define PROBE_BIT         (1<<PROBE_PIN)
 
 #if KEYPAD_ENABLE
 #define KEYPAD_STROBE_PIN       1

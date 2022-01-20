@@ -2363,7 +2363,6 @@ void __not_in_flash_func(gpio_int_handler)(uint gpio, uint32_t events)
 #endif
                 hal.control.interrupt_callback(systemGetState());
             break;
-
 #ifdef PROBE_PIN
         case PinGroup_Probe:
             gpio_set_irq_enabled(gpio, GPIO_IRQ_ALL, false);
