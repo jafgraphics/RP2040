@@ -29,6 +29,7 @@
 #endif
 
 // Define step pulse output pins.
+#define STEP_PORT                   GPIO_PIO  // N_AXIS pin PIO SM
 #define STEP_PINS_BASE 6 // N_AXIS number of consecutive pins are used by PIO
 
 // Define step direction output pins.
@@ -38,8 +39,8 @@
 #define Z_DIRECTION_PIN         12
 #define DIRECTION_OUTMODE       GPIO_MAP
 
-// Define stepper driver enable/disable output pin.
-#define STEPPERS_ENABLE_PORT    GPIO_OUTPUT
+// Define stepper driver enable/disable output pin
+#define ENABLE_PORT    GPIO_OUTPUT
 #define STEPPERS_ENABLE_PIN     14
 #define STEPPERS_ENABLE_MASK    STEPPERS_ENABLE_BIT
 
@@ -60,7 +61,7 @@
 
 
 // Define spindle enable and spindle direction output pins.
-#define SPINDLE_ENABLE_PORT     GPIO_OUTPUT
+#define SPINDLE_PORT     GPIO_OUTPUT
 #define SPINDLE_ENABLE_PIN      16
 #define SPINDLE_DIRECTION_PORT  GPIO_OUTPUT
 #define SPINDLE_DIRECTION_PIN   17
@@ -71,7 +72,7 @@
 #define SPINDLE_PWM_BIT         (1<<SPINDLE_PWM_PIN)
 
 // Define flood and mist coolant enable output pins.
-#define COOLANT_FLOOD_PORT      GPIO_OUTPUT
+#define COOLANT_PORT      GPIO_OUTPUT
 #define COOLANT_FLOOD_PIN       26
 #define COOLANT_MIST_PORT       GPIO_OUTPUT
 #define COOLANT_MIST_PIN        27
