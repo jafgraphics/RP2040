@@ -24,7 +24,7 @@
 #error Trinamic plugin not supported!
 #endif
 
-#if N_ABC_MOTORS > 0
+#if N_ABC_MOTORS > 1
 #error "Axis configuration is not supported!"
 #endif
 
@@ -51,12 +51,13 @@
 #define LIMIT_INMODE            GPIO_MAP
 
 // Define ganged axis or A axis step pulse and step direction output pins.
-#if N_ABC_MOTORS > 0
-#define M3_AVAILABLE
-#define M3_STEP_PIN             3
+#if N_ABC_MOTORS > 0       
+#define M3_AVAILABLE  
+#define M3_STEP_PIN             5
 #define M3_DIRECTION_PIN        (Z_DIRECTION_PIN + 1)
 #define M3_LIMIT_PIN            (Z_LIMIT_PIN + 1)
 #endif
+
 
 // Define spindle enable and spindle direction output pins.
 #define SPINDLE_ENABLE_PORT     GPIO_OUTPUT
