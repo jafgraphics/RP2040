@@ -39,68 +39,29 @@ endif()
 project(grblHAL)
 pico_sdk_init()
 
-if(AddMyPlugin)
-    add_executable(grblHAL
-    main.c
-    driver.c
-    serial.c
-    usb_serial.c
-    stdio_usb_descriptors.c
-    flash.c
-    i2c.c
-    spi.c
-    PCA9654E.c
-    pico_cnc.c
-    btt_skr_pico_10.c
-    ioports.c
-    ioports_analog.c
-    tmc_uart.c
-    my_plugin.c
-    eeprom/eeprom_24AAxxx.c
-    eeprom/eeprom_24LC16B.c
-    keypad/keypad.c
-    sdcard/sdcard.c
-    sdcard/ymodem.c
-    sdcard/fs_fatfs.c
-    sdcard/fs_littlefs.c
-    sdcard/macros.c
-    bluetooth/hc_05.c
-    motors/trinamic.c
-    littlefs/lfs.c
-    littlefs/lfs_util.c
-    littlefs_hal.c
-    )
-else()
-    add_executable(grblHAL
-    main.c
-    driver.c
-    serial.c
-    usb_serial.c
-    stdio_usb_descriptors.c
-    flash.c
-    i2c.c
-    spi.c
-    PCA9654E.c
-    pico_cnc.c
-    btt_skr_pico_10.c
-    ioports.c
-    ioports_analog.c
-    tmc_uart.c
-    eeprom/eeprom_24AAxxx.c
-    eeprom/eeprom_24LC16B.c
-    keypad/keypad.c
-    sdcard/sdcard.c
-    sdcard/ymodem.c
-    sdcard/fs_fatfs.c
-    sdcard/fs_littlefs.c
-    sdcard/macros.c
-    bluetooth/hc_05.c
-    motors/trinamic.c
-    littlefs/lfs.c
-    littlefs/lfs_util.c
-    littlefs_hal.c
-    )
-endif()
+add_executable(grblHAL
+ main.c
+ driver.c
+ serial.c
+ usb_serial.c
+ stdio_usb_descriptors.c
+ flash.c
+ i2c.c
+ PCA9654E.c
+ pico_cnc.c
+ btt_skr_pico_10.c
+ ioports.c
+ tmc_uart.c
+ eeprom/eeprom_24AAxxx.c
+ eeprom/eeprom_24LC16B.c
+ keypad/keypad.c
+ sdcard/sdcard.c
+ sdcard/ymodem.c
+ bluetooth/hc_05.c
+ motors/trinamic.c
+ citoh_cx6000.c
+ openpnp.c
+)
 
 pico_generate_pio_header(grblHAL ${CMAKE_CURRENT_LIST_DIR}/driverPIO.pio)
 

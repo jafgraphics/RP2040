@@ -63,6 +63,8 @@
 //#define TRINAMIC_DEV         1 // Development mode, adds a few M-codes to aid debugging. Do not enable in production code.
 //#define EEPROM_ENABLE        1 // I2C EEPROM support. Set to 1 for 24LC16(2K), 2 for larger sizes.
 //#define EEPROM_IS_FRAM       1 // Uncomment when EEPROM is enabled and chip is FRAM, this to remove write delay.
+#define OPENPNP_ENABLE     1
+
 
 // If the selected board map supports more than three motors ganging and/or auto-squaring
 // of axes can be enabled here.
