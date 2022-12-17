@@ -675,7 +675,7 @@ static void stepperGoIdle(bool clear_signals)
 }
 
 // Sets up stepper driver interrupt timeout, "Normal" version
-static void __not_in_flash_func(stepperCyclesPerTick)(uint32_t cycles_per_tick)
+static void __not_in_flash_func(stepperCyclesPerTick) (uint32_t cycles_per_tick)
 {
     stepper_timer_set_period(pio1, stepper_timer_sm, stepper_timer_sm_offset, cycles_per_tick < 1000000 ? cycles_per_tick : 1000000);
 }
@@ -987,7 +987,7 @@ static void stepperSetDirOutputs(axes_signals_t dir_outbits)
 }
 
 // Sets stepper direction and pulse pins and starts a step pulse.
-static void __not_in_flash_func(stepperPulseStart)(stepper_t *stepper)
+static void __not_in_flash_func(stepperPulseStart) (stepper_t *stepper)
 {
     if (stepper->dir_change)
         stepperSetDirOutputs(stepper->dir_outbits);
@@ -1245,12 +1245,7 @@ bool spindleConfig(spindle_ptrs_t *spindle)
         // Get the default config for
         pwm_config config = pwm_get_default_config();
 
-        // Set divider, not using the 4 fractional bit part of the clock divider, only the integer part
-        pwm_config_set_clkdiv_int(&config, prescaler);
-        // Set the top value of the PWM => the period
-        pwm_config_set_wrap(&config, spindle_pwm.period);
-        // Set the off value of the PWM => off duty cycle (either 0 or the off value)
-        pwm_set_gpio_level(SPINDLE_PWM_PIN, spindle_pwm.off_value);
+        if((hal.spindle.cap.variable = !settings.spindle.flags.pwm_disable && spindle_precompute_pwm_values(&spindle_pwm, clock_get_hz(clk_sys) / prescaler))) {
 
         // Set polarity of the channel
         uint channel = pwm_gpio_to_channel(SPINDLE_PWM_PIN);                                                                        // Get which is associated with the PWM pin
@@ -1748,11 +1743,8 @@ void settings_changed (settings_t *settings, settings_changed_flags_t changed)
     }
 }
 
-static void enumeratePins(bool low_level, pin_info_ptr pin_info, void *data)
+static void enumeratePins (bool low_level, pin_info_ptr pin_info, void *data)
 {
-    static xbar_t pin = {0};
-    uint32_t i = sizeof(inputpin) / sizeof(input_signal_t);
-
     pin.mode.input = On;
 
     for(i = 0; i < sizeof(inputpin) / sizeof(input_signal_t); i++) {
@@ -2260,7 +2252,7 @@ bool driver_init(void)
 /* interrupt handlers */
 
 // Main stepper driver
-void __not_in_flash_func(stepper_int_handler)(void)
+void __not_in_flash_func(stepper_int_handler) (void)
 {
     stepper_timer_irq_clear(pio1);
 
@@ -2268,7 +2260,7 @@ void __not_in_flash_func(stepper_int_handler)(void)
 }
 
 // Limit debounce callback
-static int64_t __not_in_flash_func(limit_debounce_callback)(alarm_id_t id, void *input)
+static int64_t __not_in_flash_func(limit_debounce_callback) (alarm_id_t id, void *input)
 {
     if(((input_signal_t *)input)->debounce) {
 
@@ -2295,7 +2287,7 @@ static int64_t __not_in_flash_func(limit_debounce_callback)(alarm_id_t id, void 
 }
 
 // SR Latch callback - used to delay resetting of pins after they are triggered
-static int64_t __not_in_flash_func(srLatch_debounce_callback)(alarm_id_t id, void *input)
+static int64_t __not_in_flash_func(srLatch_debounce_callback) (alarm_id_t id, void *input)
 {
     if(((input_signal_t *)input)->id == Input_Probe)
         gpio_set_irq_enabled(((input_signal_t *)input)->pin, probe.inverted ? GPIO_IRQ_LEVEL_HIGH : GPIO_IRQ_LEVEL_LOW, true);
@@ -2330,7 +2322,7 @@ void PPI_TIMER_IRQHandler(void)
 
 // GPIO Interrupt handler
 // TODO: bypass the Pico library interrupt handler.
-void __not_in_flash_func(gpio_int_handler)(uint gpio, uint32_t events)
+void __not_in_flash_func(gpio_int_handler) (uint gpio, uint32_t events)
 {
     input_signal_t *input = NULL;
     uint32_t i = sizeof(inputpin) / sizeof(input_signal_t);
@@ -2420,7 +2412,7 @@ void __not_in_flash_func(gpio_int_handler)(uint gpio, uint32_t events)
 }
 
 // Interrupt handler for 1 ms interval timer
-void __not_in_flash_func(isr_systick)(void)
+void __not_in_flash_func(isr_systick) (void)
 {
     elapsed_ticks++;
 

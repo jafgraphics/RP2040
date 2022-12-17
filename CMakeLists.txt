@@ -57,10 +57,13 @@ add_executable(grblHAL
  keypad/keypad.c
  sdcard/sdcard.c
  sdcard/ymodem.c
+ sdcard/fs_fatfs.c
+ sdcard/fs_littlefs.c
  bluetooth/hc_05.c
  motors/trinamic.c
- citoh_cx6000.c
- openpnp.c
+ littlefs/lfs.c
+ littlefs/lfs_util.c
+ littlefs_hal.c
 )
 
 pico_generate_pio_header(grblHAL ${CMAKE_CURRENT_LIST_DIR}/driverPIO.pio)
