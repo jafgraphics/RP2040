@@ -21,7 +21,7 @@
 
 // NOTE: Only one board may be enabled!
 // If none is enabled pin mappings from generic_map.h will be used.
-#define BOARD_PICO_CNC
+//#define BOARD_PICO_CNC
 //#define BOARD_PICOBOB
 //#define BOARD_PICOBOB_G540
 //#define BOARD_BTT_SKR_PICO_10 // incomplete and untested!
