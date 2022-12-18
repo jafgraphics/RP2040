@@ -1,6 +1,6 @@
 /*
-  generic_map_4axis.h - driver code for RP2040 ARM processors
-
+  my_machine_map.h - driver code for RP2040 ARM processors
+  JAF Graphics - 3 axis test board
   Part of grblHAL
 
   Copyright (c) 2021-2023 Terje Io
